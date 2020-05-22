@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://kit.fontawesome.com/221ff96759.js" crossorigin="anonymous"></script>
+    <!-- Include Plotly.js --><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<style>
+  .header {
+    color: #36A0FF;
+    font-size: 27px;
+    padding: 10px;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+
+</style>
+
+<body >
+
+  
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+
+</script>
+
+<div class="row">
+    <div class="col-lg-12">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+           <ul class="nav justify-content-end"> 
+              <li class="nav-item" class="nav justify-content-end">   
+                  <a class="navbar-brand" href="#">HealthLens</a>
+                  </li>
+            <li class="nav-item" class="nav justify-content-end"> 
+           <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+           </form>
+           </li>
+           <li class="nav-item" class="nav justify-content-end">
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
+          </li>
+          </ul>
+        </div>
+      </nav>
+
+</div>
+<div class="row">
+    <div class="col-lg-2">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+            <i class="fas fa-user fa-10x"></i>
+            <% var username %>
+            <label class="navbar-brand"><%= username %></label>
+        
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+            <ul class="nav flex-column">
+
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#" >Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" >Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" >Link</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="navbar-brand" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="navbar-brand" href="#" >Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#" >Link</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="navbar-brand" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="navbar-brand" href="#" >Link</a>
+                  </li>
+              </ul>
+                     
+        </nav> 
+      </div>
+
+    <div class="col-lg-7">
+        <div class="row justify-content-center">
+    <div class="container">       
+                <div class="well well-sm">
+                    <form class="form-horizontal" >
+                        <fieldset>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col-md-10">
+                                    <input id="f_name" name="f_name" type="text" maxlength="20" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" placeholder="First Name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col-md-10">
+                                    <input id="l_name" name="l_name" type="text" maxlength="20" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" placeholder="Last Name" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col-md-10">
+                                    <input id="age" name="age" type="number" placeholder="AGE" max="100" min="1" step="1" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col-md-10">
+                                    <input id="weight" name="weight" type="text" max="600" min="10" step="0.01" placeholder="Weight" class="form-control">
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <div class="col-md-10">
+                                    <input id="height" name="height" type="text" max="14" min="1" step="0.1" placeholder="Height" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                
+                                <div class="col-md-12">
+                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Male" style="margin-right: 20px ">
+                                    <label class="form-check-label" for="gender" >MALE</label>
+                               
+                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Female" style="margin-right: 20px ">
+                                    <label class="form-check-label" for="gender">FEMALE</label>
+                                 
+                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Others" style="margin-right: 20px ">
+                                    <label class="form-check-label" for="gender">OTHERS</label>
+                                </div>   
+                            </div>
+    
+                            <div class="form-group">
+                                <div class="col-md-16 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" >Submit</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
+</script>
+
+<script>
+ function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}   
+var token=readCookie('auth');
+
+
+a_health=document.getElementById('health');
+
+a_cpmparison=document.getElementById('comparison');
+
+a_useful=document.getElementById('useful');
+
+
+document.querySelector('#log_out').addEventListener('click',()=>{
+
+
+document.location.assign('/sign_out/'+token)
+
+})
+
+document.querySelector('#submit').addEventListener('click',()=>{
+    
+
+    var i=0
+    var name=document.getElementById('f_name').value +' '+ document.getElementById('l_name').value
+    var age=document.getElementById('age').value
+    var weight=document.getElementById('weight').value
+    var height=document.getElementById('height').value
+    var sex=""
+    
+    var ele = document.getElementsByName('gender'); 
+              
+    for(i = 0; i < ele.length; i++) { 
+        if(ele[i].checked)
+        {
+             console.log(ele[i].value)
+             sex=ele[i].value
+             break;
+        } 
+                
+    }
+
+    var data={ name:name,age:age,weight:weight,height:height,sex:sex}
+    
+    console.log(data)
+
+    fetch('/update_page/'+token, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+}).then(response => response.json()).then(data => {
+
+    setTimeout(function () {        
+        document.location.assign('/biodata/'+token)
+        }, 3000) 
+  
+}).catch((error) => {
+  console.error('Error:', error);
+});
+    
+
+})
+
+    
+</script>
+</body>

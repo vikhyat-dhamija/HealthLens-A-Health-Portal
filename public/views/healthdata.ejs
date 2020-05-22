@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://kit.fontawesome.com/221ff96759.js" crossorigin="anonymous"></script>
+    <!-- Include Plotly.js --><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+.flip-card {
+  background-color: transparent;
+  width: 700px;
+  height: 500px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+</style>
+
+
+</head>
+
+<body >
+
+  
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+
+</script>
+
+<div class="row">
+    <div class="col-lg-12">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+           <ul class="nav justify-content-end"> 
+              <li class="nav-item" class="nav justify-content-end">   
+                  <a class="navbar-brand" href="#">HealthLens</a>
+                  </li>
+            <li class="nav-item" class="nav justify-content-end"> 
+           <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+           </form>
+           </li>
+           <li class="nav-item" class="nav justify-content-end">
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
+          </li>
+          </ul>
+        </div>
+      </nav>
+
+</div>
+<div class="row">
+    <div class="col-lg-2">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+            <ul class="nav flex-column">
+
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+              </ul>
+
+                      
+        </nav> 
+      </div>
+
+    <div class="col-lg-10">
+        <div class="row justify-content-center">
+            <% var date %>
+            <% var bmi %>
+            <% var bp_sys %>
+            <% var bp_dias %>
+            <% var cholestrol %>
+            <% var uacid %>
+            <% var sugar %>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <img src="../images/funny-png-avatar.png" alt="Avatar" style="width:700px;height:500px;">
+                  </div>
+                  <div class="flip-card-back">
+                    <h1>Date         :<%= date %></h1> 
+                    <h1>BMI         :<%= bmi %></h1> 
+                    <h1>Blood Pressure</h1> 
+                    <h1>Systolic     :<%= bp_sys %></h1>
+                    <h1>Diastolic    :<%= bp_dias %></h1>
+                    <h1>Sugar Level  :<%= sugar %></h1>
+                    <h1>Cholestrol   :<%= cholestrol %></h1>
+                    <h1>Uric Acid    :<%= uacid %></h1>
+                  </div>
+                </div>
+            </div>
+    
+    </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2">
+        <nav class="navbar navbar-dark bg-primary flex-column" class="height:100%">
+            <ul class="nav flex-column">
+
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="navbar-brand" href="#"></a>
+                  </li>
+               
+              </ul>
+
+                      
+        </nav> 
+      </div>
+      <div class="col-lg-10">
+        <div class="row justify-content-center">
+        <input type="button" id="update" name="update" value="Update" class="btn btn-primary" > </input>
+        </div>
+      </div>
+
+</div>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
+</script>
+
+<script>
+ function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}   
+var token=readCookie('auth');
+
+
+a_health=document.getElementById('health');
+
+a_cpmparison=document.getElementById('comparison');
+
+a_useful=document.getElementById('useful');
+
+
+document.querySelector('#log_out').addEventListener('click',()=>{
+
+
+document.location.assign('/sign_out/'+token)
+
+})
+document.querySelector('#update').addEventListener('click',()=>{
+
+    document.location.assign('/update_health/'+token)
+
+})
+
+  
+</script>
+</body>

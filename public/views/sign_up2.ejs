@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+ <% var message %> 
+<h3>Hi! User.... Please sign up</h3>
+  <form action='/sign_up' method="POST">
+
+  <p>username:<input type="text" id="un" name="un" required></p>
+  <p>password:<input type="password" id="pwd" name="pwd" required></p>
+  <p>Confirm password:<input type="password" id="cpwd" name="cpwd" required></p>
+  <p></p><fieldset>
+  <p>E-mail ID:<input type="text" id="email" name="email" required></p>
+  <p>age:<input type="text" id="age" name="age" required></p>
+  <p>Sex:<select id="sex" name="sex" required>
+         <option value="male">Male</option>
+         <option value="female">Female</option>
+          </select></p>
+  <p>General Health:<select id="gh" name="gh" required>
+            <option value="good">Good</option>
+            <option value="better">Better</option>
+            <option value="worse">Worse</option>
+             </select></p>
+</fieldset></p>
+  <button name="submit_form" id="submit_form">Submit</button>
+  </form>
+<p>**all field are required</p>
+<%=message %>
+</body>

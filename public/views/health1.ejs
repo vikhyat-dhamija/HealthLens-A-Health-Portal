@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+<% var username %>
+<p><label><%= username %></label></p>
+    
+<p><label>Logged in</label></p>
+<form action="/sign_out" method="GET">
+<input type="button" id="log_out" name="log_out" Value="Log Out"></input>
+</form>        
+                  <center>
+          <h2 >My recent Health Data </h2>
+                  <table>
+<tr><p><input type="text" id="un" value=<%= username %>><%= username %></input></p></tr>  
+<tr><p><label>Age:</label><input type="text" id="age" required></p></tr>
+<tr><p><label>Weight:</label><input type="text" id="weight" required></p></tr>
+ <tr>
+ <p><label>Blood Pressure Lower Side:</label><input type="text" id="bp_l" required></p>
+ <p><label>Blood Pressure Higher Side:</label><input type="text" id="bp_h" required></p>
+ </tr>
+<tr><p><label>BMI:</label><input type="text" id="hr_bmi" required></p></tr>
+<tr><p><label>Sugar Level:</label><input type="text" id="sl" required></p></tr>
+<tr><p><label>Sleep Hours:</label><input type="text" id="sleep" required></p></tr>
+<tr><p><button id="submit" >Submit</button></p></tr>
+ 
+</table>
+<div id="messages" >Delivered Messages below :</div>
+
+</center>
+            
+
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script id="render" type="text/html" >
+<p>Blood Pressure:{{BlP}},Heart rate:{{Hr}}</p>
+</script>
+
+
+<script >
+
+const sock=io();
+
+uname=document.getElementById('un');
+
+button=document.getElementById('submit');
+
+input_age=document.getElementById('age');
+
+input_weight=document.getElementById('weight');
+
+input_bp_low=document.getElementById('bp_l');
+
+input_bp_high=document.getElementById('bp_h');
+
+input_hr_bmi=document.getElementById('hr_bmi');
+
+input_sl=document.getElementById('sl');
+
+input_sleep=document.getElementById('sleep');
+
+render_here=document.getElementById('render').innerHTML;
+
+mess_place=document.querySelector('#messages');
+
+sock.on('welcome',(message)=>{
+
+    console.log(message)
+
+})
+
+document.querySelector('#submit').addEventListener('click',()=>{
+
+sock.emit('client_send_health_data',uname.value,input_age.value,input_weight.value,input_bp_low.value,input_bp_high.value,input_hr_bmi.value,input_sl.value,input_sleep.value);
+
+button.disabled=true;
+
+input_age.value='';
+
+input_weight.value='';
+
+input_bp_low.value='';
+
+input_bp_high.value='';
+
+input_hr_bmi.value='';
+
+input_sl.value='';
+
+input_sleep.value='';
+
+input_age.focus();
+
+button.disabled=false;
+})
+
+sock.on('client_rec_health_data',(hashing,un,a,w,bpl,bph,bm,sug,slee)=>{
+
+    const crypto = require('crypto'), 
+  
+    hash = crypto.getHashes(); 
+      
+    x = un+a+w+bpl+bph+bm+sug+slee;
+  
+    hashpwd = crypto.createHash('sha1').update(x).digest('hex');
+
+    const rendering = Mustache.render(render_here,{BlP:bpl , Hr:bm});
+
+    mess_place.insertAdjacentHTML('beforeend',rendering);
+
+    
+
+    console.log("Blood pressue:",bpl,"BMI:",bm)
+
+})
+
+
+
+
+document.querySelector('#log_out').addEventListener('click',()=>{
+
+
+document.location.assign('/sign_out')
+
+})
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
+</script>
+
+            
+   
+</body>

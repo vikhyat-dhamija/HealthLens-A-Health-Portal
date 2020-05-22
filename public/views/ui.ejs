@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://kit.fontawesome.com/221ff96759.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #36A0FF;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: darkblue;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+
+<body style="background-color:Gainsboro;">
+
+  
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+
+</script>
+
+<div class="row">
+    <div class="col-lg-12">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+           <ul class="nav justify-content-end"> 
+              <li class="nav-item" class="nav justify-content-end">   
+                  <a class="navbar-brand" href="#">HealthLens</a>
+                  </li>
+            <li class="nav-item" class="nav justify-content-end"> 
+           <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+           </form>
+           </li>
+           <li class="nav-item" class="nav justify-content-end">
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
+          </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-2" >
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+            <i class="fas fa-user fa-10x"></i>
+            <% var username %>
+            <label class="navbar-brand"><%= username %></label>    
+            
+            
+
+    </div>
+  
+    <div class="col-lg-3">
+        <div class="row justify-content-center">
+    <div class="card text-center" style="width: 18rem;">
+        
+        <i class="fab fa-accessible-icon fa-3x" class="card-img-top" ></i>
+        <div class="card-body">
+          <h5 class="card-title">Bio Details</h5>
+          <p class="card-text">View/Update Bio Information</p>
+          <input type="button" id="bio" name="bio" value="Update-Bio" class="btn btn-primary"></input>
+        </div>
+        </div>
+      </div>
+      </div>
+      
+    <div class="col-lg-3">
+        <div class="row justify-content-center">
+    <div class="card text-center" style="width: 18rem;">
+        
+        <i class="fab fa-accessible-icon fa-3x" class="card-img-top" ></i>
+        <div class="card-body">
+          <h5 class="card-title">Health Info</h5>
+          <p class="card-text">View/Update Health Information</p>
+          <input type="button" id="health" name="health" value="Update-Health" class="btn btn-primary"></input>
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="col-lg-3">
+          <div class="row justify-content-center">
+        <div class="card text-center" style="width: 18rem;">
+            <i class="fas fa-medkit fa-3x" class="card-img-top" ></i>
+        <div class="card-body">
+          <h5 class="card-title">Comparison</h5>
+          <p class="card-text">Compare Yourself</p>
+          <input type="button" id="comparison" name="comparison" value="Compare-Health" class="btn btn-primary"></input>
+        </div>
+        </div>
+      </div> 
+      </div> 
+    </div>
+
+      <div class="row">
+          <div class="col-lg-2">
+              <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+                  <ul class="nav flex-column">
+
+                      <li class="nav-item">
+                        <a class="navbar-brand" href="#">Link</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="navbar-brand" href="#">Link</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="navbar-brand" href="#">Link</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="navbar-brand" href="#" >Link</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="navbar-brand" href="#">Link</a>
+                      </li>
+                      
+                    </ul>
+      
+                            
+              </nav> 
+            </div>
+
+          <div class="col-lg-3">
+              <div class="row justify-content-center">
+      <div class="card text-center" style="width: 18rem;">
+             
+             <i class="fas fa-comment-medical fa-3x" class="card-img-top"></i>
+             <div class="card-body">
+              <h5 class="card-title">Activity Tracker</h5>
+              <p class="card-text">View Activity from Google Fit</p>
+              <input type="button" id="activity" name="activity" value="Health-Updates" class="btn btn-primary"></input>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="row justify-content-center">
+          <div class="card text-center" style="width: 18rem;">
+         
+         <i class="fas fa-comment-medical fa-3x" class="card-img-top"></i>
+         <div class="card-body">
+          <h5 class="card-title">Health Reports</h5>
+          <p class="card-text">View Health Information</p>
+          <input type="button" id="reports" name="reports" value="Health-Reports" class="btn btn-primary"></input>
+        </div>
+        </div>
+      </div>
+    </div>
+
+          <div class="col-lg-3"> 
+              <div class="row justify-content-center">   
+            <div class="card text-center" style="width: 18rem;">
+                <i class="far fa-comments fa-3x" class="card-img-top"></i>
+            <div class="card-body">
+              <h5 class="card-title">Chat Members</h5>
+              <p class="card-text">Chat with members</p>
+              <input type="button" id="chat" name="chat" value="Chat-members" class="btn btn-primary"></input>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-2">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#" >Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" >Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#" >Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="navbar-brand" href="#" >Link</a>
+              </li> 
+              <li class="nav-item">
+                <a class="navbar-brand" href="#" >Link</a>
+              </li>            
+                  </ul>                         
+            </nav> 
+          </div>
+
+        <div class="col-lg-3">
+            <div class="row justify-content-center">
+    <div class="card text-center" style="width: 18rem;">
+           
+           <i class="fas fa-comment-medical fa-3x" class="card-img-top"></i>
+           <div class="card-body">
+            <h5 class="card-title">Personalised Tips</h5>
+            <p class="card-text">View Tips </p>
+            <input type="button" id="tips" name="tips" value="Health-Tips" class="btn btn-primary"></input>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="row justify-content-center">
+        <div class="card text-center" style="width: 18rem;">
+       
+       <i class="fas fa-comment-medical fa-3x" class="card-img-top"></i>
+       <div class="card-body">
+        <h5 class="card-title">Healthy Foods</h5>
+        <p class="card-text">View Health Foods Info</p>
+        <input type="button" id="foods" name="foods" value="Health-Foods" class="btn btn-primary"></input>
+      </div>
+      </div>
+    </div>
+  </div>
+
+        <div class="col-lg-3"> 
+            <div class="row justify-content-center">   
+          <div class="card text-center" style="width: 18rem;">
+              <i class="far fa-comments fa-3x" class="card-img-top"></i>
+          <div class="card-body">
+            <h5 class="card-title">Latest News</h5>
+            <p class="card-text">Latest Advisories</p>
+            <input type="button" id="advisories" name="advisories" value="Latest-advisories" class="btn btn-primary"></input>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <button class="open-button" onclick="openForm()">Register NewsLetter</button>
+    <div class="form-popup" id="myForm">
+      <form class="form-container">
+        <h1>Register</h1>
+        
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" id ="email" required>
+        <div id="popform"></div>
+        <button type="submit" class="btn" id="register" name="register" >Register</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      </form>
+    </div>
+
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
+</script>
+
+<script>
+ function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}   
+var token=readCookie('auth');
+console.log(token)
+
+a_health=document.getElementById('health');
+
+a_cpmparison=document.getElementById('comparison');
+
+a_useful=document.getElementById('useful');
+
+document.querySelector('#health').addEventListener('click',()=>{
+
+
+document.location.assign('/healthform/'+token)
+
+})
+document.querySelector('#log_out').addEventListener('click',()=>{
+
+
+document.location.assign('/sign_out/'+token)
+
+})
+
+document.querySelector('#activity').addEventListener('click',()=>{
+
+document.location.assign('/activity/'+token)
+
+})
+
+document.querySelector('#chat').addEventListener('click',()=>{
+
+document.location.assign('/chat1/'+token)
+
+})
+
+document.querySelector('#bio').addEventListener('click',()=>{
+
+document.location.assign('/biodata/'+token)
+
+})
+
+document.querySelector('#advisories').addEventListener('click',()=>{
+
+document.location.assign('/news/'+token)
+
+})
+
+document.querySelector('#health').addEventListener('click',()=>{
+
+document.location.assign('/health_/'+token)
+
+})
+
+document.querySelector('#reports').addEventListener('click',()=>{
+
+document.location.assign('/reports/'+token)
+
+})
+
+document.querySelector('#register').addEventListener('click',(e)=>{
+
+  e.preventDefault()
+
+  var data={ email : document.getElementById("email").value}
+
+  fetch('/newsletter/'+token+'/'+data.email).then(response => response.json()).then(data => {
+
+    if(data.success==1)
+    {
+      document.getElementById("popform").innerHTML=""
+      document.getElementById("popform").innerHTML+="<strong><i>Congrats for Registering !</i></strong>"
+
+    }
+   
+  
+}).catch((error) => {
+  console.error('Error:', error);
+});
+
+})
+
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("popform").innerHTML=""
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+</body>

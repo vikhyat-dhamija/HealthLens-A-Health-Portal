@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://kit.fontawesome.com/221ff96759.js" crossorigin="anonymous"></script>
+    <!-- Include Plotly.js --><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>       
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+</head>
+<style>
+  .header {
+    color: #36A0FF;
+    font-size: 27px;
+    padding: 10px;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+
+
+#tables {
+  font-family: 'Trocchi', serif;
+  border-collapse: collapse;
+  width: 100%;
+  font-weight: normal ;
+
+}
+
+#tables td, #tables th {
+  border: 1px solid gainsboro;
+  padding: 8px;
+}
+
+#tables tr{background-color: white ; text-align: center; color: black; }
+
+#tables tr:hover {background-color: gainsboro; text-align: center;}
+
+#tables th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color:#007bff;
+  color: white;
+}
+
+.row-m-t{
+  margin-top : 70px
+}
+
+</style>
+
+<body style="background-color:white;" >
+
+<div class="row" >
+    <div class="col-lg-12">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+           <ul class="nav justify-content-end"> 
+              <li class="nav-item" class="nav justify-content-end">   
+                  <a class="navbar-brand" href="#">HealthLens</a>
+                  </li>
+            <li class="nav-item" class="nav justify-content-end"> 
+           <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+           </form>
+           </li>
+           <li class="nav-item" class="nav justify-content-end">
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
+          </li>
+          </ul>
+        </div>
+      </nav>
+</div>
+
+
+<div class="row" >
+    <div class="col-lg-12">
+       <nav class="navbar navbar-expand-lg navbar-dark bg-white" >
+          <div style="width: 15%; float:left; margin: 5px;" >  
+            <select id="healthparams" class="selectpicker" data-live-search="true" multiple > 
+                <option>cholestrol</option>
+                <option>bp_sys</option>
+                <option>bp_dias</option>
+                <option>sugar</option>
+                <option>uacid</option>
+                <option>bmi</option>
+            </select>
+        </div>
+        <div style="width: 15%; float:left; margin: 10px;">
+            <input type="text" name="daterange" value="05/01/2020 - 05/15/2020" />
+        </div>
+
+        <div style="width: 15%; float:left; margin: 10px;" >
+            <input type="button" id="submit" name="submit" value="Get Reports" class="btn btn-primary" ></input>
+        </div>   
+           
+        </div>
+      </nav>
+
+<div class="row row-m-t" class="container">
+    <div class="col-lg-5"></div>
+    <div class="col-lg-7"  class="row justify-content-center">
+    
+       <div id="tables" style="width:800px; margin:0 auto; overflow-x:auto" >
+
+
+       </div>
+    </div>
+</div>
+
+<div class="row" class="container">
+    <div class="col-lg-1" class="holder">
+     <div></div>
+    </div>
+    <div class="col-lg-3" class="holder">
+        <div id="plotdiv0" style="height: 500px; width: 500px; display: block; margin-left: auto; margin-right: auto;">
+
+        </div>
+    </div>
+    <div class="col-lg-3" class="holder">
+        <div id="plotdiv1" style="height:  500px; width: 500px; display: block; margin-left: auto; margin-right: auto;">
+
+        </div>
+    </div>
+    <div class="col-lg-3" class="holder" >
+        <div id="plotdiv2" style="height: 500px; width: 500px; display: block; margin-left: auto; margin-right: auto;">
+
+        </div>
+    </div>
+    <div class="col-lg-2" class="holder">
+        <div></div>
+       </div>
+</div>
+
+<div class="row" class="container">
+    <div class="col-lg-1" >
+        <div></div>
+    </div>
+    <div class="col-lg-3"class="holder" >
+        <div id="plotdiv3" style="height: 500px; width: 500px;">
+
+        </div>
+    </div>
+    <div class="col-lg-3" class="holder">
+        <div id="plotdiv4" style="height: 500px; width: 500px;">
+
+        </div>
+    </div>
+    <div class="col-lg-3" class="holder">
+        <div id="plotdiv5" style="height: 500px; width: 500px;">
+
+        </div>
+    </div>
+
+    <div class="col-lg-2" class="holder">
+        <div></div>
+       </div>
+</div>
+
+
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
+</script>
+
+<script>
+ function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}   
+var token=readCookie('auth');
+var k=[]
+var start_date=new Date('2020-05-01')
+var end_date=new Date('2020-05-15')
+var res=[]
+var traces = [];
+var layout = {
+        width: 300,
+        height: 300
+    };
+var kvalues=[]
+a_health=document.getElementById('health');
+
+a_cpmparison=document.getElementById('comparison');
+
+a_useful=document.getElementById('useful');
+
+
+document.querySelector('#log_out').addEventListener('click',()=>{
+
+
+document.location.assign('/sign_out/'+token)
+
+})
+
+
+$(function() {
+    
+    $('input[name="daterange"]').daterangepicker({
+    
+    opens: 'left'
+    
+    }, function(start, end, label) {
+
+        start_date=start
+        end_date=end
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));    
+        var values = $('#healthparams').val();
+        console.log(values.toString())
+      });
+    
+    });
+
+
+document.querySelector('#submit').addEventListener('click',()=>{
+
+var values = $('#healthparams').val();
+
+var data={ startdate :start_date, enddate : end_date , health_params: values}
+
+    fetch('/reports/'+token, {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    }).then(response => response.json()).then(data => {
+    
+    traces=[]
+    kvalues=[]
+    k=[]
+    var n=0
+    for(n=0; n < 6 ; n++)
+    {    
+        var myDiv = document.getElementById("plotdiv"+n.toString());
+        myDiv.innerHTML=""   
+    }
+
+    console.log(data.result.toString())
+    const totalRecords = data.result
+    var size = totalRecords.length
+	var keys=Object.keys(totalRecords[0]);
+					 
+	var Table = document.getElementById("tables");
+    Table.innerHTML = "";
+	var text = ''
+    text='<table>'
+	text+='<tr>'
+        
+	var i = 0
+	while(i < keys.length)
+	{
+		text+='<th>' 
+        text+=(keys[i]).toUpperCase()
+        k.push(keys[i])
+		text+='</th>'
+		i++
+    }
+    var di=-1
+    var i = 0
+	while(i < k.length)
+	{
+        if(k[i]=='date')
+        {
+           di=i
+           console.log(di)
+
+        }
+        kvalues[i] = data.result.map(function(value) {return value[k[i]];});
+        console.log(kvalues[i].toString())
+		i++
+    }
+ 
+
+
+	var row = 0
+	while(row < size)
+	{
+	text+='<tr>'
+	    for (var column in totalRecords[row]) {
+		text+='<td>'
+		text+=totalRecords[row][column]
+		text+='</td>'
+		}		  
+		text+='</tr>'
+		row++
+		}
+		text+='</table>'
+    document.getElementById("tables").innerHTML+=text
+    
+    
+    var n=0
+
+    for(n=0 ; n < kvalues.length;)
+    {     
+        if(k[n] != 'date')
+        {
+            traces.push({x: kvalues[di],y: kvalues[n]});           
+        }
+
+        n+=1
+    }
+    
+    var n=0
+
+    for(n=0; n < traces.length;n++)
+    {    
+        var myDiv = document.getElementById("plotdiv"+n.toString());
+        Plotly.newPlot(myDiv, [traces[n]]);   
+    }
+
+}).catch((error) => {
+  console.error('Error:', error);
+});
+    
+}) 
+
+
+</script>
+
+</body>

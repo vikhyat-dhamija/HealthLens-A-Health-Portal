@@ -1,0 +1,40 @@
+
+<head>
+
+</head>
+
+<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+ <center>               
+<form method='POST' action='/'>
+    <p>Username :<input type="text" id="username" name="username" required ></p>
+    <p>Password :<input type="password" id="password" name="password" autocomplete="off" required></p>
+    <p><button id="submit"> SignIn</button></p>
+    </form>                    
+
+<% var message %>
+              
+</p><a href="/sign_up" >Sign Up</a></form></p>
+
+<div id="messages"><p> <%= message %> </p></div>
+</center> 
+                
+
+
+
+                 <script
+src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js">
+</script>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
+</script>
+
+
+
+</body>
