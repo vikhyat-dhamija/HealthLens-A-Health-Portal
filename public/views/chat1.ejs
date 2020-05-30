@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <head>
     <script src="https://kit.fontawesome.com/221ff96759.js" crossorigin="anonymous"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+
 
 body { font: 13px Helvetica, Arial; }
-form { background: #fff; padding: 3px; position: fixed; bottom: 0; width: 100%; border-color: #000; border-top-style: solid; border-top-width: 1px;}
-form input { border-style: solid; border-width: 1px; padding: 10px; width: 85%; margin-right: .5%; }
-form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; margin-left: 2%; }
+
+.c {
+    height:80vh;
+    background: white;
+    overflow: auto;
+}
+
 #messages { list-style-type: none; margin: 0; padding: 0; }
-#messages li { padding: 5px 10px; }
 #messages li:nth-child(odd) { background: #eee; }
+#messages li { padding: 5px 10px; }
+
+form { background: #fff; padding: 3px; position: fixed; bottom: 0; width: 85%; border-color: #000; border-top-style: solid; border-top-width: 1px;}
+form input { border-style: solid; border-width: 1px; padding: 10px; width: 85%; margin-right: .5%; }
+form button { width: 9%; background: #007bff ; border: none; padding: 10px; margin-left: 2%; }
 
 </style>
 
@@ -30,48 +38,67 @@ form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 
 <div class="row">
     <div class="col-lg-12">
        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-           <ul class="nav justify-content-end"> 
+           <ul class="navbar-nav mr-auto">
               <li class="nav-item" class="nav justify-content-end">   
                   <a class="navbar-brand" href="#">Health Lens</a>
                   </li>
+
+                  <li class="nav-item" class="nav justify-content-end" float='right'> 
+                  
+                      
+                       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                      </li>
+                       <li class="nav-item" class="nav justify-content-end" float='right'> 
+                       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                      
+                      </li>
+                    
+                    </li>
+            </ul>
           <% var username %>
-          <li class="nav-item" class="nav justify-content-end">
+          <ul class="navbar-nav ml-auto"> 
+            
+           <li>
             <i class="fas fa-user fa-2x"></i>
               <label id="user_name" value='<%= username %>'><%= username %></label>
-          </li>
-            <li class="nav-item" class="nav justify-content-end" float='right'> 
-           <form class="form-inline my-2 my-lg-0" >
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-           </form>
-           </li>
-           <li class="nav-item" class="nav justify-content-end" float='right'>
-           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
-          </li>
+            </li>
+            <li>
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input></span>
+            </li>
           
           </ul>
         </div>
       </nav>
 </div>
 
-<div class="row" id="messagearea">
-
-
-</div>
-
 
 <div class="row">
-    <div class="col-lg-12">
+
+<div class="col-lg-2" style="background-color: #007bff;height: 90vh;color: #fff;"> 
+  <img src='../images/chat11.png' alt="John" style="width:65%;height:30%;position: relative; display: block;margin-left: auto;margin-right: auto"> 
+  <div style="text-align: center;"><h4 >ACTIVE USERS</h4> </div>
+  <hr></hr> 
+  <ul id="active_users" style="text-align: center;list-style: none;"></ul>
+</div>
+
+  
+ 
+  <div class="col-lg-10"  >
+  <div id="message-area" class="messages">
+    <div id='txt_a' class="c">
     <ul id="messages"></ul>
+  </div>
+  </div>
 
-    <form action="/" method="POST" id="chatForm">
-
-      <input id="txt" autocomplete="off" autofocus="on" placeholder="type your message here..." /><button>Send</button>
-
-    </form>
-</div>  
+  <div class="controls">
+  <form action="/" method="POST" id="chatForm">
+    <input id="txt" autocomplete="off" autofocus="on" placeholder="type your message here..." />
+    <button>Send</button>
+  </form>
+</div>
+  
+</div>
 </div>      
-
 
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
@@ -96,16 +123,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
     }
     return null;
 }   
-var token=readCookie('auth');
+
 
 var el=document.getElementById('user_name');
 var username = (el.innerText || el.textContent);
-//for checking that we are getting the username correctly
-console.log(username)
+var token=readCookie('auth'+username);
+var count=0
+var join_message
 
 //const io = require('socket.io-client');
 
-const socket = io('http://localhost:3000');
+const socket = io();
 
 a_health=document.getElementById('health');
 
@@ -113,9 +141,7 @@ a_cpmparison=document.getElementById('comparison');
 
 a_useful=document.getElementById('useful');
 
-
 document.querySelector('#log_out').addEventListener('click',()=>{
-
 
 document.location.assign('/sign_out/'+token)
 
@@ -124,6 +150,33 @@ document.location.assign('/sign_out/'+token)
 //emit the username to the server
 socket.emit('username', username);
 
+//function to add element
+function addItem(username){
+    var ul = document.getElementById("active_users");
+    //var candidate = document.getElementById("candidate");
+    var li = document.createElement("li");
+    li.setAttribute('id',username);
+    li.appendChild(document.createTextNode(username));
+    ul.appendChild(li);
+}
+
+//function to add element
+function addItem1(username){
+    var ul = document.getElementById("messages");
+    //var candidate = document.getElementById("candidate");
+    var li = document.createElement("li");
+    li.setAttribute('id',username);
+    li.appendChild(document.createTextNode(username));
+    ul.appendChild(li);
+}
+
+//function to remove element
+function removeItem(username){
+    var ul = document.getElementById("active_users");
+    //var candidate = document.getElementById(username);
+    var item = document.getElementById(username);
+    ul.removeChild(item);
+}
 
 // append the chat text message
 
@@ -131,26 +184,47 @@ socket.on('chat_message', function(msg){
 
 $('#messages').append($('<li>').html(msg));
 
-});
+$("#txt_a").animate({ scrollTop: 20000000 }, "fast");
 
-
-
-// append text if someone is online and hence its event is appended once the user enters the chat page or leave the chat page
-socket.on('is_online', function(username) {
-
-$('#messages').append($('<li>').html(username));
 
 });
 
+/*document.querySelector('#submit').addEventListener('click',(e)=>{
 
-// submit text message without reload/refresh the page kind of ajax using jquery
-$('form').submit(function(e){
+  e.preventDefault(); // prevents page reloading   
+  socket.emit('chat_message', document.getElementById('txt').value);
+  document.getElementById('txt').value=''
+})*/
 
-    e.preventDefault(); // prevents page reloading   
-    socket.emit('chat_message', $('#txt').val());
-    $('#txt').val('');
+// append text if someone is online and hence its event is appended once the user enters the chat page 
+socket.on('is_online', function(message) {
 
-    return false;
+  if(count==0)
+  {
+     join_message=message
+  }
+  else
+  {
+  $('#messages').append($('<li>').html(message));
+  $("#txt_a").animate({ scrollTop: 20000000 }, "fast");
+  }
+
+  count+=1
+
+});
+
+//same as above when user leave the page
+socket.on('is_online_i', function(username) {
+//after this we have to remove the user from the active user list
+addItem(username)
+});
+
+//same as above when user leave the page
+socket.on('is_online_r', function(username) {
+
+//after this we have to remove the user from the active user list
+removeItem(username)
+
 
 });
 
@@ -161,13 +235,44 @@ fetch('/chatmessages/'+token).then(response => response.json()).then((data)=>
 {
     var i=0
     var chatar=document.getElementById('messages');
+    
+    
     for(i=0; i < data.messages.length ; i++){
         chatar.innerHTML+=('<li>'+'<strong>' + data.messages[i].username + '</strong>: ' + data.messages[i].messages+'</li>')
     }
+    //chatar.innerHTML+=' '+join_message
+    $('#messages').append($('<li>').html(join_message));
+    
+    $("#txt_a").animate({ scrollTop: 20000000 }, "fast");
+})
 
+fetch('/activeusers/'+token).then(response => response.json()).then((data)=> 
+{
+    var i=0
+    var chatar=document.getElementById('active_users');
+    chatar.innerHTML='';
+    for(i=0; i < data.activeusers.length ; i++){
+      if(data.activeusers[i].username != username) 
+      { 
+        addItem(data.activeusers[i].username) 
+        console.log(data.activeusers[i].username)      
+      }
+    }
+    addItem(username)
 })
 
 }
+
+
+$('form').submit(function(e){
+
+e.preventDefault(); // prevents page reloading   
+socket.emit('chat_message', $('#txt').val());
+$('#txt').val('');
+
+return false;
+
+});
 
 </script>
 </body>

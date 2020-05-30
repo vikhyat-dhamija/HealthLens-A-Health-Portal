@@ -4,7 +4,22 @@
     <!-- Include Plotly.js --><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 
-
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 400px;
+        margin: auto;
+        text-align: center;
+      }
+      
+      .title {
+        color: grey;
+        font-size: 22px;
+      }
+      .row-m-t{
+  margin-top : 90px
+}    
+</style>
 </head>
 
 <body>
@@ -16,136 +31,89 @@
 
 </script>
 
-<div class="row">
+<div class="row ">
+
+    
     <div class="col-lg-12">
        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-           <ul class="nav justify-content-end"> 
+           <ul class="navbar-nav mr-auto">
               <li class="nav-item" class="nav justify-content-end">   
-                  <a class="navbar-brand" href="#">HealthLens</a>
+                  <a class="navbar-brand" href="#">Health Lens</a>
                   </li>
-            <li class="nav-item" class="nav justify-content-end"> 
-           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-           </form>
-           </li>
-           <li class="nav-item" class="nav justify-content-end">
-           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
-          </li>
+                  <% var username %>  
+                  <% var step %>
+                  <% var dist %>
+                  <li class="nav-item" class="nav justify-content-end" float='right'> 
+                    <form class="form-inline my-2 my-lg-0" >
+                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    </li>
+            </ul>
+          
+          <ul class="navbar-nav ml-auto"> 
+            
+           <li>
+            <span style="float:right"><i class="fas fa-user fa-2x"></i>
+              <label id="user_name" value='<%= username %>'><%= username %></label>
+            </li>
+            <li>
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input></span>
+            </li>
+          
           </ul>
-        </div>
       </nav>
-
+  </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-2" >
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
-            <i class="fas fa-user fa-10x"></i>
-            <% var username %>
-            <label class="navbar-brand"><%= username %></label>    
-            
-            
 
-    </div>
-  
+<div class="row row-m-t">
+    
+    <div class="col-lg-1"></div>
     <div class="col-lg-5">
         <div class="row justify-content-center">
-    <div class="card text-center" style="width: 18rem;">
-        
-        <i class="fab fa-accessible-icon fa-3x" class="card-img-top" ></i>
-        <div class="card-body">
-            <% var step %>
-          <h5 class="card-title">Steps Covered</h5>
-          <p class="card-text"><%= step %></p>
-        </div>
-        </div>
-        
-      </div>
-      </div>
-        
-      <div class="col-lg-5">
-          <div class="row justify-content-center">
-        <div class="card text-center" style="width: 18rem;">
-            <i class="fas fa-medkit fa-3x" class="card-img-top" ></i>
-        <div class="card-body">
-            <% var dist %>
-          <h5 class="card-title">Distance Covered(yards)</h5>
-          <p class="card-text"><%= dist %></p>
-        </div>
-        </div>
-      </div> 
-      </div> 
-</div>
-
-<div class="row">
-    <div class="col-lg-2">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
-            <ul class="nav flex-column">
-
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">Link</a>
-                </li>
-
-            </ul>
-        </nav> 
-    </div>
-    <div class="card-body">
-        <input type="button" id="history" name="history" value="HISTORICAL DATA DISPLAY(LAST 60 Days)" class="btn btn-primary"></input>
-    </div>
-
-</div>
-   
-<div class="row">
-        <div class="col-lg-2">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
-                <ul class="nav flex-column">
-
-                    <li class="nav-item">
-                      <a class="navbar-brand" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="navbar-brand" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="navbar-brand" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="navbar-brand" href="#" >Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="#" >Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="#" >Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="#" >Link</a>
-                    </li>
-                  </ul>
-    
-                          
-            </nav> 
+            <div class="card">
+                <img src='../images/running2.png' alt="John" style="width:100%">
+                <h2>Total Steps </h2>
+                <b><p class="title"><%= step %></p></b>
+                
+              </div>
           </div>
-            <div class="col-lg-5">
-                <div  id="step_graph"></div> 
-            </div>
-            <div class="col-lg-5">
-                <div  id="dist_graph"></div>
-            </div>          
+      </div>
+      <div class="col-lg-1"></div>
+      <div class="col-lg-5">
+        <div class="row justify-content-center">
+            <div class="card">
+                <img src='../images/odometer.png' alt="John" style="width:100%">
+                <h2>Distance(yards) </h2>
+                <b><p class="title"><%= parseFloat(dist).toFixed(2) %></p></b>
+                
+              </div>
+          </div>
+      </div>
+      
+</div>
 
+   
+<div class="row row-m-t">  
+            <div class="col-lg-12">              
+                <hr></hr>
+                <h1 style="text-align: center;">Steps for last 60 days</h1>
+                <div  id="step_graph"></div>
+                 
+                <hr></hr>
+            </div>
 </div>     
        
-
+<div class="row row-m-t">  
+        <div class="col-lg-12">
+            
+            <h1 style="text-align: center;">Distance for last 60 days</h1>   
+            <div  id="dist_graph"></div> 
+            
+            <hr></hr>
+        </div>
+</div>  
 
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
@@ -169,9 +137,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
-}   
-var token=readCookie('auth');
-
+}
+   
+var el=document.getElementById('user_name');
+var username = (el.innerText || el.textContent);
+var token=readCookie('auth'+username);
 
 a_health=document.getElementById('health');
 
@@ -186,7 +156,8 @@ document.querySelector('#log_out').addEventListener('click',()=>{
 document.location.assign('/sign_out/'+token)
 
 })
-document.querySelector('#history').addEventListener('click',()=>{
+
+/*document.querySelector('#history').addEventListener('click',()=>{
 
 fetch('/googledata/'+token).then(response => response.json()).then((data)=> 
 {
@@ -206,24 +177,38 @@ fetch('/googledata/'+token).then(response => response.json()).then((data)=>
 
 }
 );
-})
+})*/
 
 window.onload=()=>{
 
 fetch('/googledata/'+token).then(response => response.json()).then((data)=> 
 {
-    console.log(data.step.toString())
-    console.log(data.dist.toString())
+   
     s = document.getElementById('step_graph');
     d=document.getElementById('dist_graph');
     
     Plotly.newPlot( s, [{
 	x: data.x,
-	y: data.step}] );
+	y: data.step}],{
+  title:'Steps Plot',xaxis: {
+    title: 'N-th Day'
+  },
+  yaxis: {
+    title: 'Num of Steps'
+  }
+});
 
     Plotly.newPlot( d, [{
 	x: data.x,
-	y: data.dist}] );    
+    y: data.dist}]
+    ,{
+  title:'Distance Plot',xaxis: {
+    title: 'N-th Day'
+  },
+  yaxis: {
+    title: 'Dist(yds)'
+  }
+} );    
 
 
 })

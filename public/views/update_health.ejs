@@ -85,10 +85,12 @@ div.container {
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
            </form>
            </li>
-           <li class="nav-item" class="nav justify-content-end">
-           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
-          </li>
-          </ul>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+         <li >
+         <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
+        </li>
+        </ul>
         </div>
       </nav>
 
@@ -96,49 +98,73 @@ div.container {
 <div class="row">
     <div class="col-lg-2">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
-            <i class="fas fa-user fa-10x"></i>
+          <img src='../images/user.png' alt="John" style="width:60%;height: 60%;position: relative; display: block;margin-left: auto;margin-right: auto">
             <% var username %>
-            <label class="navbar-brand"><%= username %></label>
-        
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+            
+            <label id="user_name" value='<%= username %>' class="navbar-brand" ><%= username %></label>
+            
             <ul class="nav flex-column">
 
                 <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
+                  <a class="navbar-brand" href="#"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
+                  <a class="navbar-brand" href="#"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
+                  <a class="navbar-brand" href="#"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="navbar-brand" href="#" >Link</a>
+                  <a class="navbar-brand" href="#" ></a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand" href="#">Link</a>
+                    <a class="navbar-brand" href="#"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
+                    <a class="navbar-brand" href="#" ></a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
+                    <a class="navbar-brand" href="#" ></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#">Link</a>
+                      <a class="navbar-brand" href="#"></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#" >Link</a>
+                      <a class="navbar-brand" href="#" ></a>
                   </li>
                   <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
+                    <a class="navbar-brand" href="#" ></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#">Link</a>
+                      <a class="navbar-brand" href="#"></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#" >Link</a>
+                      <a class="navbar-brand" href="#" ></a>
                   </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
               </ul>
                      
         </nav> 
@@ -148,24 +174,25 @@ div.container {
              
               
                     <div class="container">
-                        <form >
+                        <form onsubmit="return false" >
                           <label for="bp_sys">Blood Pressure Systolic</label>
-                          <input id="bp_sys" name="bp_sys" type="number"  step="1"  min="50" max="250" placeholder="Systolic BP Min: 50 Max:250 Normal:120" >
-                      
+                          <input id="bp_sys" name="bp_sys" type="number"  step="1"  min="50" max="250" placeholder="Systolic BP Min: 50 Max:250 Normal:120" onkeypress="return isNumberKey(this, event);">
+                           <div id="errors_bp_sys"></div>
                           <label for="bp_dias">Blood Pressure Diastolic</label>
-                          <input id="bp_dias" name="bp_dias" type="number" placeholder="Diastolic BP Min: 30 Max:150 Normal:80" step="1" min="30" max="150">
-                      
+                          <input id="bp_dias" name="bp_dias" type="number" placeholder="Diastolic BP Min: 30 Max:150 Normal:80" step="1" min="30" max="150" onkeypress="return isNumberKey(this, event);">
+                          <div id="errors_bp_dias" ></div>
                           <label for="cholestrol">Total Cholestrol</label>
-                          <input id="cholestrol" name="cholestrol" type="number" step="0.5" placeholder="Cholestrol Min: 10 Max:700 Normal:below 200"  min="10" max="700" >
-                        
+                          <input id="cholestrol" name="cholestrol" type="number" step="0.5" placeholder="Cholestrol Min: 10 Max:700 Normal:below 200"  min="10" max="700" onkeypress="return isNumberKey(this, event);" >
+                          <div id="errors_cholestrol"></div>
                           <label for="sugar">Total Sugar</label>
-                          <input id="sugar" name="sugar" type="number" placeholder="Sugar in mg/dL Min:30 Max:500  Normal:around 130" step="0.1" >
-                          
+                          <input id="sugar" name="sugar" type="number" placeholder="Sugar in mg/dL Min:30 Max:500  Normal:around 130" step="0.1" onkeypress="return isNumberKey(this, event);">
+                          <div id="errors_sugar" ></div>
                           <label for="sugar">Total Uric Acid</label> 
-                          <input id="uacid" name="uacid" type="number" placeholder="Uric Acid in mg/dL Min: 2 Max:10 Normal:around 4" step="0.1" min="2" max="10" >
-                          
+                          <input id="uacid" name="uacid" type="number" placeholder="Uric Acid in mg/dL Min: 2 Max:10 Normal:around 4" step="0.1" min="2" max="10" onkeypress="return isNumberKey(this, event);">
+                          <div id="errors_uacid"></div>
                           <input type="submit" value="Submit" id="submit" name="submit" >
                         </form>
+                        <div id="errors" ></div>
                       </div>                   
                 
             
@@ -198,8 +225,16 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
     }
     return null;
 }   
-var token=readCookie('auth');
 
+var el=document.getElementById('user_name');
+var username = (el.innerText || el.textContent);
+var token=readCookie('auth'+username);
+
+
+function isNumeric(num){
+    num = "" + num; //coerce num to be a string
+    return !isNaN(num) && !isNaN(parseFloat(num));
+}
 
 a_health=document.getElementById('health');
 
@@ -215,20 +250,119 @@ document.location.assign('/sign_out/'+token)
 
 })
 
-document.querySelector('#submit').addEventListener('click',()=>{
+document.querySelector('#submit').addEventListener('click',(e)=>{
     
+  var errors_div=document.getElementById('errors')
+  var errors_bp_sys=document.getElementById('errors_bp_sys')
+  var errors_bp_dias=document.getElementById('errors_bp_dias')
+  var errors_cholestrol=document.getElementById('errors_cholestrol')
+  var errors_sugar=document.getElementById('errors_sugar')
+  var errors_uacid=document.getElementById('errors_uacid')
+ 
+  //resetting all their values to empty so as to remove the previous errors
+  errors_div.innerHTML=""
+  errors_bp_sys.innerHTML=""
+  errors_bp_dias.innerHTML=""
+  errors_cholestrol.innerHTML=""
+  errors_sugar.innerHTML=""
+  errors_uacid.innerHTML=""
 
+  e.preventDefault()
+
+  var flag_errors=0
+
+    //First Local Validation whether the right data has been input 
     var i=0
     var b_sys=document.getElementById('bp_sys').value 
     var b_dias=document.getElementById('bp_dias').value
     var chol=document.getElementById('cholestrol').value
     var sug=document.getElementById('sugar').value 
     var uac = document.getElementById('uacid').value 
-              
-
     var data={ bp_sys:b_sys,bp_dias:b_dias,cholestrol:chol,sugar:sug,uacid:uac}
+
+    //checking the length of all the text boxes whether they are not empty as at least some needs to be there 
+    if((data.bp_sys.length == 0 ) && (data.bp_dias.length == 0) && (data.sugar.length == 0) && (data.cholestrol.length == 0) && (data.uacid.length == 0))
+    {
+      errors_div.innerHTML+="All fields can not be empty and must be numbers only as specified"
+      flag_errors=1
+    }
     
-    console.log(data)
+    //checking the bp_sys_data    
+    if((data.bp_sys.length) != 0)
+    {
+        if(!isNumeric(data.bp_sys) )
+        {
+                errors_bp_sys.innerHTML+="Please enter a valid Number for BP"
+                flag_errors=1
+        }
+        else if(parseInt(data.bp_sys) > 250  || parseInt(data.bp_sys) < 50 )
+        {
+                errors_bp_sys.innerHTML+="Please enter the Systolic BP within range"
+                flag_errors=1
+        }
+    }
+
+    //checking the bp_dias_data
+    if((data.bp_dias.length) != 0)
+    {
+        if(!isNumeric(data.bp_dias) )
+        {
+                errors_bp_dias.innerHTML+="Please enter a valid Number for BP diastolic"
+                flag_errors=1
+        }
+        else if(parseInt(data.bp_dias) < 30  || parseInt(data.bp_dias) > 150 )
+        {
+                errors_bp_dias.innerHTML+="Please enter the Diastolic BP within range"
+                flag_errors=1
+        }
+    }
+    
+    //checking the sugar value
+    if((data.sugar.length) != 0)
+    {
+        if(!isNumeric(data.sugar) )
+        {
+                errors_sugar.innerHTML+="Please enter a valid Number for Sugar Value"
+                flag_errors=1
+        }
+        else if(parseFloat(data.sugar) < 30  || parseFloat(data.sugar) > 500 )
+        {
+                errors_sugar.innerHTML+="Please enter the Sugar value within range"
+                flag_errors=1
+        }
+    }
+
+    //checking the cholestrol value
+    if((data.cholestrol.length) != 0)
+    {
+        if(!isNumeric(data.cholestrol) )
+        {
+                errors_cholestrol.innerHTML="Please enter a valid Number for Cholestrol Value"
+                flag_errors=1
+        }
+        else if(parseInt(data.cholestrol) < 10  || parseInt(data.cholestrol) > 700 )
+        {
+                errors_cholestrol.innerHTML +="Please enter the Sugar value within range"
+                flag_errors=1
+        }
+    }
+
+    //checking the uric acid value
+    if((data.uacid.length) != 0)
+    {
+        if(!isNumeric(data.uacid) )
+        {
+                errors_uacid.innerHTML="Please enter a valid Number for Uric Acid Value"
+                flag_errors=1
+        }
+        else if(parseInt(data.uacid) < 2  || parseInt(data.uacid) > 10 )
+        {
+                errors_uacid.innerHTML+="Please enter the Uric Acid value within range"
+                flag_errors=1
+        }
+    }
+
+if(!flag_errors){
 
     fetch('/health_/'+token, {
         method: 'POST', 
@@ -238,6 +372,8 @@ document.querySelector('#submit').addEventListener('click',()=>{
         body: JSON.stringify(data),
 }).then(response => response.json()).then(data => {
 
+
+  document.getElementById('errors').innerHTML+='<b>'+'Data submitted successfully'+'</b>'
     //after certain time may get on to that page where the health data is being displayed
     setTimeout(function () {        
         document.location.assign('/health_/'+token);
@@ -245,12 +381,31 @@ document.querySelector('#submit').addEventListener('click',()=>{
    
   
 }).catch((error) => {
-  console.error('Error:', error);
+  
+  document.getElementById('errors').innerHTML+=error;
+  //console.error('Error:', error);
 });
-    
+}    
 
 })
 
-    
+
+//Prevent the page from typing the non numbers with decimal and take care that no decimal is repeated
+function isNumberKey(txt, evt) {
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode == 46) {
+        //Check if the text already contains the . character
+        if (txt.value.indexOf('.') === -1) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (charCode > 31 &&
+          (charCode < 48 || charCode > 57))
+          return false;
+      }
+      return true;
+    }
 </script>
 </body>

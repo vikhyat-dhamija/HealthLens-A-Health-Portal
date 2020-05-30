@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Copse' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/221ff96759.js" crossorigin="anonymous"></script>
     <!-- Include Plotly.js --><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
+
 <style>
   .header {
     color: #36A0FF;
@@ -14,17 +15,19 @@
     font-size: 35px;
     color: #36A0FF;
 }
+label {
+  margin-right: 20px;
+}
 
+input[type="radio"]{margin-right: 20px ;}
 </style>
-
+</head>
 <body >
 
   
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
-
-</script>
 
 <div class="row">
     <div class="col-lg-12">
@@ -39,116 +42,163 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
            </form>
            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
            <li class="nav-item" class="nav justify-content-end">
-           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > 
           </li>
-          </ul>
+        </ul>
+    </nav>
         </div>
-      </nav>
+      
 
 </div>
+
 <div class="row">
     <div class="col-lg-2">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
-            <i class="fas fa-user fa-10x"></i>
+            <img src='../images/user.png' alt="John" style="width:60%;height: 60%;position: relative; display: block;margin-left: auto;margin-right: auto">
             <% var username %>
-            <label class="navbar-brand"><%= username %></label>
-        
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
+            <label id="user_name" value='<%= username %>' class="navbar-brand" ><%= username %></label>           
             <ul class="nav flex-column">
 
                 <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
+                  <a class="navbar-brand" href="#"></a>
                 </li>
                 <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
+                    <a class="navbar-brand" href="#"></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#">Link</a>
+                    <a class="navbar-brand" href="#"></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#" >Link</a>
+                    <a class="navbar-brand" href="#"></a>
                   </li>
                   <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
+                    <a class="navbar-brand" href="#"></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#">Link</a>
+                    <a class="navbar-brand" href="#"></a>
                   </li>
                   <li class="nav-item">
-                      <a class="navbar-brand" href="#" >Link</a>
+                    <a class="navbar-brand" href="#"></a>
                   </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#"></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="navbar-brand" href="#" ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="#" ></a>
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand" href="#" ></a>
+              </li>
+              <li class="nav-item">
+                <a class="navbar-brand" href="#" ></a>
+            </li>
+            <li class="nav-item">
+              <a class="navbar-brand" href="#" ></a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand" href="#" ></a>
+        </li>
+        <li class="nav-item">
+            <a class="navbar-brand" href="#" ></a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" href="#" ></a>
+      </li>
+      <li class="nav-item">
+        <a class="navbar-brand" href="#" ></a>
+    </li>
+    <li class="nav-item">
+      <a class="navbar-brand" href="#" ></a>
+  </li>
               </ul>
                      
         </nav> 
       </div>
 
     <div class="col-lg-7">
+        
         <div class="row justify-content-center">
     <div class="container">       
-                <div class="well well-sm">
-                    <form class="form-horizontal" >
+                <div>
+                    <form class="form-horizontal" onsubmit="return false">
                         <fieldset>
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><img src='../images/user_icon.png' alt="John" style="width:4%"></span>
                                 <div class="col-md-10">
                                     <input id="f_name" name="f_name" type="text" maxlength="20" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" placeholder="First Name" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><img src='../images/user_icon.png' alt="John" style="width:4%"></span>
                                 <div class="col-md-10">
                                     <input id="l_name" name="l_name" type="text" maxlength="20" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" placeholder="Last Name" class="form-control">
                                 </div>
                             </div>
     
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><img src='../images/user_icon.png' alt="John" style="width:4%"></span>
                                 <div class="col-md-10">
-                                    <input id="age" name="age" type="number" placeholder="AGE" max="100" min="1" step="1" class="form-control">
-                                </div>
+                                    <input id="age" name="age" type="number" placeholder="AGE in range 1 to 100 with natural numbers only " max="100" min="1" step="1" class="form-control">
+                                    <div id="errors_age" style="color: red;"></div>
+                                 </div>
+                                
                             </div>
     
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><img src='../images/user_icon.png' alt="John" style="width:4%"></span>
                                 <div class="col-md-10">
-                                    <input id="weight" name="weight" type="text" max="600" min="10" step="0.01" placeholder="Weight" class="form-control">
+                                    <input id="weight" name="weight" type="number" max="600" min="10" step="0.01" placeholder="Weight in range 10-600 pounds in 2 decimal points" class="form-control">
+                                    <div id="errors_weight" style="color: red;"></div>
+                                
                                 </div>
+                                
                             </div>
     
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><img src='../images/user_icon.png' alt="John" style="width:4%"></span>
                                 <div class="col-md-10">
-                                    <input id="height" name="height" type="text" max="14" min="1" step="0.1" placeholder="Height" class="form-control">
+                                    <input id="height" name="height" type="number" max="132" min="10" step="0.1" placeholder="Height in range 132-10 in inches in 1 decimal point( 1 foot = 12 inches)" class="form-control">
+                                    <div id="errors_height" style="color: red;"></div>
                                 </div>
+                                
                             </div>
 
                             <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                <span class="col-md-1 col-md-offset-2 text-center"><img src='../images/user_icon.png' alt="John" style="width:4%"></span>
                                 
-                                <div class="col-md-12">
-                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Male" style="margin-right: 20px ">
+                                <div style="padding:40px">
+                                    
+                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Male" >
                                     <label class="form-check-label" for="gender" >MALE</label>
                                
-                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Female" style="margin-right: 20px ">
+                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Female" >
                                     <label class="form-check-label" for="gender">FEMALE</label>
                                  
-                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Others" style="margin-right: 20px ">
+                                    <input type="radio" class="form-check-input radio-inline" name="gender" id="gender"  value="Others" >
                                     <label class="form-check-label" for="gender">OTHERS</label>
                                 </div>   
                             </div>
@@ -156,16 +206,30 @@
                             <div class="form-group">
                                 <div class="col-md-16 text-center">
                                     <button type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" >Submit</button>
+                                      
+                                                              
                                 </div>
+                                
                             </div>
+                            
+                            
                         </fieldset>
+                        
                     </form>
+                    <div id="errors_div1" style="color: red;"></div>     
+                    
+                                    
+                                        
                 </div>
-            </div>
+                
         </div>
     </div>
+                
     </div>
-    
+  
+
+
+</div>
 
 
 <script
@@ -191,8 +255,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
     }
     return null;
 }   
-var token=readCookie('auth');
+var el=document.getElementById('user_name');
+var username = (el.innerText || el.textContent);
+var token=readCookie('auth'+username);
 
+function isNumeric(num){
+    num = "" + num; //coerce num to be a string
+    return !isNaN(num) && !isNaN(parseFloat(num));
+}
 
 a_health=document.getElementById('health');
 
@@ -208,22 +278,86 @@ document.location.assign('/sign_out/'+token)
 
 })
 
-document.querySelector('#submit').addEventListener('click',()=>{
+document.querySelector('#submit').addEventListener('click',(e)=>{
     
+    e.preventDefault()
 
+    var flag_errors=0
     var i=0
     var name=document.getElementById('f_name').value +' '+ document.getElementById('l_name').value
     var age=document.getElementById('age').value
     var weight=document.getElementById('weight').value
     var height=document.getElementById('height').value
     var sex=""
-    
     var ele = document.getElementsByName('gender'); 
-              
+
+    var errors_age=document.getElementById("errors_age")
+    var errors_height=document.getElementById("errors_height")
+    var errors_weight=document.getElementById("errors_weight")
+    var errors_div=document.getElementById("errors_div1")
+
+    errors_div.innerHTML=""
+    errors_age.innerHTML=""
+    errors_height.innerHTML=""
+    errors_weight.innerHTML=""
+
+    //checking the length of all the text boxes whether they are not empty as at least some needs to be there 
+    if((age.length == 0 ) || (weight.length == 0) || (height.length == 0) )
+    {
+      errors_div.innerHTML+='<p>'+"Fields can not be empty and must be numbers only as specified"+'</p>'
+      flag_errors=1
+      console.log("first")
+    }
+
+
+    if((age.length) != 0)
+    {
+        if(!isNumeric(age) )
+        {
+                console.log("Please enter a valid age")
+                errors_age.innerHTML+="Please enter a valid age"
+                flag_errors=1
+        }
+        else if(parseInt(age) > 100  || parseInt(age) < 1 )
+        {
+            console.log("Please enter a age in range")
+                errors_age.innerHTML+="Please enter the age within range"
+                flag_errors=1
+        }
+    }
+     
+    if((weight.length) != 0)
+    {
+        if(!isNumeric(weight) )
+        {
+                errors_weight.innerHTML+="Please enter a valid weight"
+                flag_errors=1
+        }
+        else if(parseFloat(weight) > 600  || parseFloat(weight) < 10 )
+        {
+                errors_weight.innerHTML+="Please enter the weight within range"
+                flag_errors=1
+        }
+    }
+    
+    if((height.length) != 0)
+    {
+        if(!isNumeric(height) )
+        {
+                errors_height.innerHTML+="Please enter a valid weight"
+                flag_errors=1
+        }
+        else if(parseFloat(height) > 132  || parseFloat(height) < 10 )
+        {
+                errors_height.innerHTML+="Please enter the height within range"
+                flag_errors=1
+        }
+    }
+
+
     for(i = 0; i < ele.length; i++) { 
         if(ele[i].checked)
-        {
-             console.log(ele[i].value)
+        {           
              sex=ele[i].value
              break;
         } 
@@ -232,9 +366,10 @@ document.querySelector('#submit').addEventListener('click',()=>{
 
     var data={ name:name,age:age,weight:weight,height:height,sex:sex}
     
-    console.log(data)
 
-    fetch('/update_page/'+token, {
+if(!flag_errors){
+
+fetch('/update_page/'+token, {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json',
@@ -250,9 +385,32 @@ document.querySelector('#submit').addEventListener('click',()=>{
   console.error('Error:', error);
 });
     
+}
 
 })
 
+window.onload=function(){
+
+fetch('/biodata2/'+token).then(response => response.json()).then((data)=> 
+{
+
+ if(data.name.length !=0)
+ {
+    var s = data.name;
+    console.log(s)
+    var i = s.indexOf(' ');
+    var partOne = s.slice(0, i).trim();
+    var partTwo = s.slice(i + 1, s.length).trim();
     
+    document.getElementById('f_name').value=partOne
+    document.getElementById('l_name').value=partTwo
+
+    document.getElementById('f_name').disabled = true;
+    document.getElementById('l_name').disabled = true;
+
+ }
+
+}
+)}  
 </script>
 </body>

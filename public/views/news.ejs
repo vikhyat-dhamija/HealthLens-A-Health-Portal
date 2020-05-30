@@ -7,26 +7,34 @@
 </head>
 
 <body>
-<div class="row">
+  <div class="row">
     <div class="col-lg-12">
        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-           <ul class="nav justify-content-end"> 
+           <ul class="navbar-nav mr-auto">
               <li class="nav-item" class="nav justify-content-end">   
-                  <a class="navbar-brand" href="#">HealthLens</a>
+                  <a class="navbar-brand" href="#">Health Lens</a>
                   </li>
-            <li class="nav-item" class="nav justify-content-end"> 
-           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-           </form>
-           </li>
-           <li class="nav-item" class="nav justify-content-end">
-           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
-          </li>
+                  <li class="nav-item" class="nav justify-content-end" float='right'> 
+                    <form class="form-inline my-2 my-lg-0" >
+                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    </li>
+            </ul>
+          <% var username %>
+          <ul class="navbar-nav ml-auto"> 
+            
+           <li>
+            <span style="float:right"><i class="fas fa-user fa-2x"></i>
+              <label id="user_name" value='<%= username %>'><%= username %></label>
+            </li>
+            <li>
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input></span>
+            </li>
+          
           </ul>
         </div>
       </nav>
-
 </div>
 
 <div class="row">
@@ -87,9 +95,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
-}   
-var token=readCookie('auth');
-
+} 
+  
+var el=document.getElementById('user_name');
+var username = (el.innerText || el.textContent);
+var token=readCookie('auth'+username);
 
 a_health=document.getElementById('health');
 

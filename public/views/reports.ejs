@@ -57,29 +57,44 @@
   margin-top : 70px
 }
 
+
+
+
 </style>
 
 <body style="background-color:white;" >
 
-<div class="row" >
+  <div class="row">
+
+    
     <div class="col-lg-12">
        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-           <ul class="nav justify-content-end"> 
+           <ul class="navbar-nav mr-auto">
               <li class="nav-item" class="nav justify-content-end">   
-                  <a class="navbar-brand" href="#">HealthLens</a>
+                  <a class="navbar-brand" href="#">Health Lens</a>
                   </li>
-            <li class="nav-item" class="nav justify-content-end"> 
-           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-           </form>
-           </li>
-           <li class="nav-item" class="nav justify-content-end">
-           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
-          </li>
+                  <% var username %>  
+                  <li class="nav-item" class="nav justify-content-end" float='right'> 
+                    <form class="form-inline my-2 my-lg-0" >
+                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    </li>
+            </ul>
+          
+          <ul class="navbar-nav ml-auto"> 
+            
+           <li>
+            <span style="float:right"><i class="fas fa-user fa-2x"></i>
+              <label id="user_name" value='<%= username %>'><%= username %></label>
+            </li>
+            <li>
+           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input></span>
+            </li>
+          
           </ul>
-        </div>
       </nav>
+  </div>
 </div>
 
 
@@ -118,56 +133,66 @@
     </div>
 </div>
 
-<div class="row" class="container">
-    <div class="col-lg-1" class="holder">
-     <div></div>
+<div class="container">
+    <div class="row row-m-t">
+    <div class="col-lg-12" >
+        <div id="p0"></div>
+        <div id="plotdiv0" ></div>
+        
     </div>
-    <div class="col-lg-3" class="holder">
-        <div id="plotdiv0" style="height: 500px; width: 500px; display: block; margin-left: auto; margin-right: auto;">
-
-        </div>
-    </div>
-    <div class="col-lg-3" class="holder">
-        <div id="plotdiv1" style="height:  500px; width: 500px; display: block; margin-left: auto; margin-right: auto;">
-
-        </div>
-    </div>
-    <div class="col-lg-3" class="holder" >
-        <div id="plotdiv2" style="height: 500px; width: 500px; display: block; margin-left: auto; margin-right: auto;">
-
-        </div>
-    </div>
-    <div class="col-lg-2" class="holder">
-        <div></div>
-       </div>
+</div>
 </div>
 
-<div class="row" class="container">
-    <div class="col-lg-1" >
-        <div></div>
-    </div>
-    <div class="col-lg-3"class="holder" >
-        <div id="plotdiv3" style="height: 500px; width: 500px;">
-
-        </div>
-    </div>
-    <div class="col-lg-3" class="holder">
-        <div id="plotdiv4" style="height: 500px; width: 500px;">
-
-        </div>
-    </div>
-    <div class="col-lg-3" class="holder">
-        <div id="plotdiv5" style="height: 500px; width: 500px;">
-
-        </div>
-    </div>
-
-    <div class="col-lg-2" class="holder">
-        <div></div>
-       </div>
+<div  class="container">
+  <div class="row">   
+  <div class="col-lg-12" >
+      <div id="p1"></div>
+      <div id="plotdiv1" ></div>
+      
+  </div>
+</div>
 </div>
 
+<div class="container">
+  <div class="row">
+  <div class="col-lg-12" >
+      <div id="p2"></div>
+      <div id="plotdiv2" ></div>
+      
+  </div>
+</div>
+</div>
 
+<div class="container">
+    <div class="row">
+  <div class="col-lg-12" >
+      <div id="p3"></div>
+      <div id="plotdiv3" ></div>
+      
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="container"> 
+  <div class="row">
+  <div class="col-lg-12" >
+      <div id="p4"></div>
+      <div id="plotdiv4" ></div>
+      
+  </div>
+</div>
+</div>
+
+<div class="container"> 
+  <div class="row">  
+  <div class="col-lg-12" class="holder">
+    <div id="p5"></div>
+    <div id="plotdiv5" style="height: 500px; width: 500px; display: block; margin-left: auto; margin-right: auto;"></div>
+      
+  </div>
+</div>
+</div>
 
 <script
 src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
@@ -191,8 +216,12 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
-}   
-var token=readCookie('auth');
+}
+   
+var el=document.getElementById('user_name');
+var username = (el.innerText || el.textContent);
+var token=readCookie('auth'+username);
+
 var k=[]
 var start_date=new Date('2020-05-01')
 var end_date=new Date('2020-05-15')
@@ -311,7 +340,7 @@ var data={ startdate :start_date, enddate : end_date , health_params: values}
 		}
 		text+='</table>'
     document.getElementById("tables").innerHTML+=text
-    
+    var index=[]
     
     var n=0
 
@@ -319,7 +348,8 @@ var data={ startdate :start_date, enddate : end_date , health_params: values}
     {     
         if(k[n] != 'date')
         {
-            traces.push({x: kvalues[di],y: kvalues[n]});           
+            traces.push({x: kvalues[di],y: kvalues[n]});
+            index.push(n)       
         }
 
         n+=1
@@ -330,7 +360,9 @@ var data={ startdate :start_date, enddate : end_date , health_params: values}
     for(n=0; n < traces.length;n++)
     {    
         var myDiv = document.getElementById("plotdiv"+n.toString());
-        Plotly.newPlot(myDiv, [traces[n]]);   
+        Plotly.newPlot(myDiv, [traces[n]]);
+        document.getElementById("p"+n.toString()).innerHTML+= '<h1>'+k[index[n]].toUpperCase() + ' Vs.' +'Date Time'+'</h1>'+'<hr></hr>'
+        
     }
 
 }).catch((error) => {

@@ -3,51 +3,132 @@
     <script src="https://kit.fontawesome.com/221ff96759.js" crossorigin="anonymous"></script>
     <!-- Include Plotly.js --><script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <style>
-.flip-card {
-  background-color: transparent;
-  width: 700px;
-  height: 500px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
-}
 
-/* This container is needed to position the front and back side */
-.flip-card-inner {
-  position: relative;
+input[type=submit] {
   width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-}
-
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
-
-/* Style the back side */
-.flip-card-back {
-  background-color: dodgerblue;
+  background-color: #007bff;
   color: white;
-  transform: rotateY(180deg);
+  padding: 14px 20px;
+  margin: 8px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
+body {
+    font-family: 'Open Sans';font-size: 22px;
+}
+
+
+.text {
+  background-color: white;
+  color: black;
+  font-size: 20px; /* Responsive font size */
+  font-weight: bold;
+  margin: 0 auto; /* Center the text container */
+  padding: 10px;
+  width: 50%;
+  text-align: center; /* Center text */
+  position: absolute; /* Position text */
+  top: 50%; /* Position text in the middle */
+  left: 50%; /* Position text in the middle */
+  transform: translate(-50%, -50%); /* Position text in the middle */
+  mix-blend-mode: screen; /* This makes the cutout text possible */
+}
+
+
+.title {
+        color: grey;
+        font-size: 22px;
+}
+
+.row-m-t{
+  margin-top : 90px
+} 
+
+:root {
+  --gutter: 10px;
+}
+
+.app {
+  padding: var(--gutter) 0;
+  display: grid;
+  grid-gap: var(--gutter) 0;
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  align-content: start;
+}
+
+.app > * {
+  grid-column: 2 / -2;
+}
+
+.app > .full {
+  grid-column: 1 / -1;
+}
+
+.hs {
+  display: grid;
+  grid-gap: calc(var(--gutter) / 2);
+  grid-template-columns: 10px repeat(6, calc(50% - var(--gutter) * 2)) 10px;
+  grid-template-rows: minmax(150px, 1fr);
+  
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: calc(.75 * var(--gutter));
+  margin-bottom: calc(-.5 * var(--gutter));
+}
+
+.hs:before,
+.hs:after {
+  content: '';
+}
+
+/* Hide scrollbar */
+.hide-scroll {
+  overflow-y: hidden;
+  margin-bottom: calc(-.1 * var(--gutter));
+}
+
+
+/* Demo styles */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background: #456173;
+}
+
+
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+.app {
+  width:100%;
+  height: 100%;
+  background: white;
+  overflow-y: scroll;
+}
+
+.hs > li,
+.item {
+  scroll-snap-align: center;
+  padding: calc(var(--gutter) / 2 * 1.5);
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+}
 </style>
 
 
@@ -63,130 +144,111 @@
 </script>
 
 <div class="row">
-    <div class="col-lg-12">
-       <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-           <ul class="nav justify-content-end"> 
-              <li class="nav-item" class="nav justify-content-end">   
-                  <a class="navbar-brand" href="#">HealthLens</a>
-                  </li>
-            <li class="nav-item" class="nav justify-content-end"> 
-           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-           </form>
-           </li>
-           <li class="nav-item" class="nav justify-content-end">
-           <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input>
-          </li>
-          </ul>
-        </div>
-      </nav>
-
-</div>
-<div class="row">
-    <div class="col-lg-2">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
-            <ul class="nav flex-column">
-
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#" >Link</a>
-                </li>
-              </ul>
-
-                      
-        </nav> 
-      </div>
-
-    <div class="col-lg-10">
-        <div class="row justify-content-center">
             <% var name %>
             <% var age %>
             <% var weight %>
             <% var height %>
             <% var sex %>
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <img src="../images/funny-png-avatar.png" alt="Avatar" style="width:700px;height:500px;">
-                  </div>
-                  <div class="flip-card-back">
-                    <h1>NAME        :<%= name %></h1> 
-                    <h1>AGE         :<%= age %></h1> 
-                    <h1>WEIGHT      :<%= weight %></h1>
-                    <h1>HEIGHT      :<%= height %></h1>
-                    <h1>SEX         :<%= sex %></h1>
-                  </div>
-                </div>
-            </div>
-    
-    </div>
-</div>
+  <div class="col-lg-12">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item" class="nav justify-content-end">   
+                <a class="navbar-brand" href="#">Health Lens</a>
+                </li>
+
+                <li class="nav-item" class="nav justify-content-end" float='right'> 
+                  <form class="form-inline my-2 my-lg-0" >
+                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                  </li>
+          </ul>
+        <% var username %>
+        <ul class="navbar-nav ml-auto"> 
+          
+         <li>
+          <span style="float:right"><i class="fas fa-user fa-2x"></i>
+            <label id="user_name" value='<%= username %>'><%= username %></label>
+          </li>
+          <li>
+         <input type="button" id="log_out" name="log_out" value="LogOut" class="btn btn-primary" > </input></span>
+          </li>
+        
+        </ul>
+      </div>
+    </nav>
 </div>
 
 <div class="row">
+  <div class="app">
+    <div style="text-align: center;"><h1 >My Personal Information</h1> </div>
+    
+    <div class="full hide-scroll">
+      <ul class="hs">
+        <li class="item">
+          
+            <img src='../images/name.png' alt="John" style="width:50%;">
+            <h2>Name</h2>
+            <b><p class="title"><%= name %></p></b>
+            
+         
+        </li>
+        <li class="item">
+          
+            <img src='../images/age.png' alt="John" style="width:50%;">
+            <h2>Age</h2>
+            <b><p class="title"><%= age %></p></b> 
+        </li>
+        
+        <li class="item">
+          
+            <img src='../images/weight.png' alt="John" style="width:50%;">
+            <h2>Weight</h2>
+            <b><p class="title"><%= weight %></p></b>
+              
+        </li>
+
+        <li class="item">
+          
+            <img src='../images/height.png' alt="John" style="width:50%;">
+            <h2>Height</h2>
+            <b><p class="title"><%= height %></p></b>
+                
+        </li>
+
+        <li class="item">
+          
+            <img src='../images/gender.png' alt="John" style="width:50%;">
+            <h2>Sex</h2>
+            <b><p class="title"><%= sex %></p></b>
+             
+        </li>
+      </ul>
+  
+    
+  
+    
+  </div>
+  </div>
+  
+  <div class="container">
+    <div class="item">
+      <h2>Block for context</h2>
+    </div>
+  </div>
+  </div>
+
+  <div class="row">
     <div class="col-lg-2">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary flex-column" class="height:100%">
-            <ul class="nav flex-column">
-
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                  <a class="navbar-brand" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">Link</a>
-                </li>
-               
-              </ul>
-
-                      
-        </nav> 
-      </div>
-      <div class="col-lg-10">
-        <div class="row justify-content-center">
-        <input type="button" id="update" name="update" value="Update" class="btn btn-primary" > </input>
+    </div>
+        <div class="col-lg-8">
+          <div class="btn btn-default btn-block">
+          <input type="submit" id="update" name="update" value="Add latest Details"> </input>
+          </div>
         </div>
-      </div>
 
-</div>
-<script
+
+<script>
 src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js">
 </script>
 
@@ -209,8 +271,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js">
     }
     return null;
 }   
-var token=readCookie('auth');
-
+var el=document.getElementById('user_name');
+var username = (el.innerText || el.textContent);
+var token=readCookie('auth'+username);
 
 a_health=document.getElementById('health');
 
